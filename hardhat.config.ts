@@ -187,6 +187,21 @@ const config: HardhatUserConfig = {
     outDir: "types",
     target: "ethers-v6",
   },
+  etherscan: {
+    apiKey: {
+      rivest: 'n/a', // Is not required by blockscout. Can be any non-empty string
+    },
+    customChains: [
+      {
+        network: "rivest",
+        chainId: 21097,
+        urls: {
+          apiURL: "https://explorer.rivest.inco.org/api",
+          browserURL: "https://explorer.rivest.inco.org",
+        }
+      }
+    ]
+  }
 };
 
 export default config;
