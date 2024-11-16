@@ -27,11 +27,11 @@ contract TrustForum is Ownable2Step, GatewayCaller {
         euint64 userLikes = TFHE.asEuint64(likes, inputProof);
 
         if (TFHE.isInitialized(encryVoteCnts[topic])) {
-            TFHE.allow(encryVoteCnts[topic], address(this));
-            TFHE.allow(encryVoteCnts[topic], owner());
             encryVoteCnts[topic] = TFHE.add(encryVoteCnts[topic], userLikes);
         } else {
             encryVoteCnts[topic] = userLikes;
+            TFHE.allow(encryVoteCnts[topic], address(this));
+            TFHE.allow(encryVoteCnts[topic], owner());
         }
 
         totalVoteCntEncry = TFHE.add(totalVoteCntEncry, userLikes);
